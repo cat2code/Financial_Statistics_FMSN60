@@ -1,0 +1,20 @@
+load regdataN.mat
+% load regdatat.mat
+
+[xout,l1,CovM] = MLmax(@mylnL,[1 1 1], [yN, x]);
+
+% johan löste t-dist
+% samma params ish, och 2.5 på frihetsgrad
+
+%[param , conf] = regress(yN, [ones(200,1) x]);
+
+[xout,l2,CovM] = MLmax(@mylnL2,[1 1 1 1], [yN, x]);
+
+lambda = - 2 * (l1 - l2)
+
+lambda > chi2inv(0.05, 1)
+
+%%
+load prisdata.mat
+
+plot(t, log(p) / T-t)
